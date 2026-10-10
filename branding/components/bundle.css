@@ -1,0 +1,48 @@
+body { margin: 0; font-family: var(--font-sans); background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+.ts-stage { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; padding: var(--space-6); }
+
+/* Button */
+.ts-btn { font: inherit; font-size: 15px; font-weight: 500; line-height: 20px; min-height: 44px; padding: 0 var(--space-6); border-radius: var(--radius-sm); border: 1px solid var(--line-strong); background: var(--paper-raised); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: var(--space-2); }
+.ts-btn:hover { background: var(--paper-sunk); }
+.ts-btn-primary { background: var(--ledger); border-color: var(--ledger); color: var(--on-ledger); }
+.ts-btn-primary:hover { background: var(--ledger-deep); border-color: var(--ledger-deep); color: var(--on-deep); }
+.ts-btn-quiet { background: transparent; border-color: transparent; color: var(--link); padding: 0 var(--space-3); }
+.ts-btn-quiet:hover { background: var(--ledger-soft); }
+.ts-btn:focus-visible { outline: 2px solid transparent; box-shadow: var(--focus-ring); }
+.ts-btn[disabled] { opacity: .5; cursor: not-allowed; }
+
+/* InstrumentTag */
+.ts-tag { display: inline-flex; align-items: center; gap: var(--space-1); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: var(--space-1) var(--space-2); border-radius: var(--radius-xs); background: var(--paper-sunk); color: var(--ink); white-space: nowrap; }
+.ts-tag-equity { background: var(--ledger-soft); color: var(--ledger); }
+.ts-tag-debt { background: var(--seal-soft); color: var(--seal); }
+.ts-tag-settled { background: var(--settled-soft); color: var(--settled); }
+.ts-tag-pending { background: var(--seal-soft); color: var(--seal); }
+.ts-tag-danger { background: var(--danger-soft); color: var(--danger); }
+.ts-tag-eligibility { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--line-strong); }
+
+/* OfferingCard */
+.ts-card { background: var(--paper-raised); border: 1px solid var(--line); border-radius: var(--radius-md); padding: var(--space-6); display: grid; gap: var(--space-6); max-width: 440px; min-width: 0; }
+.ts-card-head { display: grid; gap: var(--space-2); }
+.ts-card-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.ts-card-issuer { margin: 0; font-size: 14px; line-height: 22px; color: var(--ink-muted); }
+.ts-card-title { margin: 0; font-size: 22px; line-height: 30px; font-weight: 600; text-wrap: balance; }
+.ts-terms { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3) var(--space-6); margin: 0; }
+.ts-terms div { display: grid; gap: var(--space-1); min-width: 0; }
+.ts-terms dt { font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); }
+.ts-terms dd { margin: 0; font-size: 16px; line-height: 24px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.ts-progress { display: grid; gap: var(--space-2); }
+.ts-progress-figures { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; font-variant-numeric: tabular-nums; }
+.ts-figure { font-size: 28px; line-height: 36px; font-weight: 500; }
+.ts-progress-of { font-size: 14px; line-height: 22px; color: var(--ink-muted); }
+.ts-units { display: grid; grid-template-columns: repeat(20, 1fr); gap: var(--space-1); }
+.ts-units span { aspect-ratio: 1; border-radius: var(--radius-xs); background: var(--paper-sunk); box-shadow: inset 0 0 0 1px var(--line); }
+.ts-units span.on { background: var(--ledger); box-shadow: none; }
+.ts-card-foot { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; justify-content: space-between; }
+.ts-id { font-family: var(--font-mono); font-size: 13px; line-height: 20px; color: var(--ink-muted); }
+
+/* RiskNotice */
+.ts-risk { display: grid; grid-template-columns: auto 1fr; gap: var(--space-3); padding: var(--space-4) var(--space-6) var(--space-4) var(--space-4); background: var(--paper-sunk); border: 1px solid var(--line); border-radius: var(--radius-md); max-width: 640px; }
+.ts-risk svg { width: 20px; height: 20px; margin-top: 2px; stroke: var(--danger); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.ts-risk-title { margin: 0 0 var(--space-1); font-size: 14px; line-height: 22px; font-weight: 600; }
+.ts-risk p { margin: 0; font-size: 14px; line-height: 22px; color: var(--ink); }
+.ts-risk a { color: var(--link); text-underline-offset: 2px; }

@@ -1,0 +1,84 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>TokenSec</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+<style>
+  html, body { margin:0; height:100%; }
+  body { background:var(--paper); color:var(--ink); font-family:var(--font-sans); overflow:hidden; }
+  .cover { position:relative; height:288px; overflow:hidden; }
+  .art { position:absolute; top:0; left:480px; width:480px; height:288px; overflow:hidden; }
+  .art svg { display:block; width:480px; height:288px; }
+  .deep { fill:var(--ledger-deep); rx:var(--radius-md); }
+  .tint { fill:var(--ledger-soft); rx:var(--radius-md); }
+  .seal { fill:var(--seal-fill); rx:var(--radius-md); }
+  .unit { fill:var(--ledger); rx:var(--radius-xs); }
+  .words { position:absolute; left:var(--space-8); right:var(--space-8); bottom:var(--space-6); max-width:440px; }
+  .name { margin:0; font-size:88px; line-height:.92; font-weight:600; letter-spacing:-.02em; color:var(--ink); }
+  .name span { color:var(--ledger); }
+  .tag { margin:var(--space-3) 0 0 4px; font-size:14px; line-height:20px; color:var(--ink-muted); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="art" aria-hidden="true">
+<svg viewBox="0 0 480 288" width="480" height="288">
+<!--
+  blocks      ledger-deep 144x272 slab bled off the top (the brand field, largest) · ledger-soft 124x112 and seal-fill 124x112 stacked, bleeding off the right edge · the ledger tiles fill the middle — about 35% of 960x288
+  arrangement one tall ledger-deep slab, a field of unit tiles, two satellites stacked at right; bottoms on one line space-6 above the edge, space-4 gutters
+  pattern     tiles, from "tokenisation divides one security into registered units": 20px unit tiles at a space-6 pitch with space-1 gaps, full at the bottom and thinning upward as units are issued, two merged two-wide
+  scales      gutters space-4; pitch space-6; tile gap space-1; corners radius-md on blocks, radius-xs on tiles
+-->
+<rect class="deep" x="16" y="-8" width="144" height="272" rx="8"/>
+<rect class="tint" x="356" y="24" width="140" height="112" rx="8"/>
+<rect class="seal" x="356" y="152" width="140" height="112" rx="8"/>
+<rect class="unit" x="200" y="76" width="20" height="20" rx="2"/>
+<rect class="unit" x="176" y="100" width="20" height="20" rx="2"/>
+<rect class="unit" x="224" y="100" width="20" height="20" rx="2"/>
+<rect class="unit" x="176" y="124" width="20" height="20" rx="2"/>
+<rect class="unit" x="200" y="124" width="20" height="20" rx="2"/>
+<rect class="unit" x="248" y="124" width="20" height="20" rx="2"/>
+<rect class="unit" x="272" y="124" width="20" height="20" rx="2"/>
+<rect class="unit" x="176" y="148" width="20" height="20" rx="2"/>
+<rect class="unit" x="200" y="148" width="20" height="20" rx="2"/>
+<rect class="unit" x="224" y="148" width="20" height="20" rx="2"/>
+<rect class="unit" x="248" y="148" width="20" height="20" rx="2"/>
+<rect class="unit" x="272" y="148" width="20" height="20" rx="2"/>
+<rect class="unit" x="296" y="148" width="20" height="20" rx="2"/>
+<rect class="unit" x="176" y="172" width="20" height="20" rx="2"/>
+<rect class="unit" x="200" y="172" width="20" height="20" rx="2"/>
+<rect class="unit" x="224" y="172" width="20" height="20" rx="2"/>
+<rect class="unit" x="248" y="172" width="20" height="20" rx="2"/>
+<rect class="unit" x="272" y="172" width="20" height="20" rx="2"/>
+<rect class="unit" x="296" y="172" width="20" height="20" rx="2"/>
+<rect class="unit" x="320" y="172" width="20" height="20" rx="2"/>
+<rect class="unit" x="176" y="196" width="20" height="20" rx="2"/>
+<rect class="unit" x="200" y="196" width="20" height="20" rx="2"/>
+<rect class="unit" x="224" y="196" width="20" height="20" rx="2"/>
+<rect class="unit" x="248" y="196" width="20" height="20" rx="2"/>
+<rect class="unit" x="272" y="196" width="44" height="20" rx="2"/>
+<rect class="unit" x="320" y="196" width="20" height="20" rx="2"/>
+<rect class="unit" x="176" y="220" width="20" height="20" rx="2"/>
+<rect class="unit" x="200" y="220" width="20" height="20" rx="2"/>
+<rect class="unit" x="224" y="220" width="20" height="20" rx="2"/>
+<rect class="unit" x="248" y="220" width="20" height="20" rx="2"/>
+<rect class="unit" x="272" y="220" width="20" height="20" rx="2"/>
+<rect class="unit" x="296" y="220" width="20" height="20" rx="2"/>
+<rect class="unit" x="320" y="220" width="20" height="20" rx="2"/>
+<rect class="unit" x="176" y="244" width="20" height="20" rx="2"/>
+<rect class="unit" x="200" y="244" width="20" height="20" rx="2"/>
+<rect class="unit" x="224" y="244" width="44" height="20" rx="2"/>
+<rect class="unit" x="272" y="244" width="20" height="20" rx="2"/>
+<rect class="unit" x="296" y="244" width="20" height="20" rx="2"/>
+<rect class="unit" x="320" y="244" width="20" height="20" rx="2"/>
+</svg>
+</div>
+<div class="words">
+<h1 class="name">Token<span>Sec</span></h1>
+<p class="tag">Shares and bonds, issued and held on-chain. A CoinPort business.</p>
+</div>
+</div>
+</body>
+</html>
