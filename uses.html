@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uses | TokenSec</title>
+<meta name="description" content="How shares, bonds, fund units, property and other real-world assets are being issued and recorded as digital securities today.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="branding/tokens.css">
+<link rel="stylesheet" href="branding/components/bundle.css">
+<style>
+  body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; background: var(--paper); color: var(--ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  .wrap { width: 100%; max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding-inline: var(--space-4); }
+  @media (min-width: 720px) { .wrap { padding-inline: var(--space-8); } }
+
+  header { border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 72px; }
+  nav { display: flex; gap: var(--space-2); }
+  nav a { color: var(--ink); text-decoration: none; border-radius: var(--radius-sm); padding: var(--space-2); }
+  nav a:hover { color: var(--link); }
+  nav a[aria-current="page"] { color: var(--ledger); }
+  nav a:focus-visible { outline: 2px solid transparent; box-shadow: var(--focus-ring); }
+  .logo { display: inline-flex; align-items: center; gap: var(--space-3); color: var(--ink); text-decoration: none; border-radius: var(--radius-sm); }
+  .logo:focus-visible { outline: 2px solid transparent; box-shadow: var(--focus-ring); }
+  .logo svg { width: 32px; height: 32px; flex: none; }
+  .logo .tile { fill: var(--ledger); }
+  .logo .tile-held { fill: var(--seal-fill); }
+  .wordmark { font-size: 24px; line-height: 1; font-weight: 600; letter-spacing: -0.01em; }
+  .wordmark span { color: var(--ledger); }
+
+  main { flex: 1; display: flex; align-items: center; }
+  main .wrap { padding-block: var(--space-16); display: grid; gap: var(--space-6); }
+  .eyebrow { margin: 0; color: var(--ink-muted); }
+  h1 { margin: 0; max-width: 18ch; text-wrap: balance; }
+  .lede { margin: 0; max-width: 60ch; color: var(--ink); }
+  @media (max-width: 600px) { h1.ts-display { font-size: 34px; line-height: 42px; } }
+
+  main { display: block; }
+  main .wrap { padding-block: 0; display: block; }
+  section { padding-block: var(--space-12); border-top: 1px solid var(--line); }
+  @media (min-width: 720px) { section { padding-block: var(--space-16); } }
+  main .intro { padding-block: var(--space-16) var(--space-12); display: grid; gap: var(--space-6); }
+  h2 { margin: 0 0 var(--space-2); max-width: 32ch; }
+  h3 { margin: 0; }
+  p { margin: 0; }
+  .section-lede { max-width: 65ch; margin-bottom: var(--space-8); color: var(--ink-muted); }
+  h2 + .compare { margin-top: var(--space-6); }
+
+  .cases { display: grid; gap: var(--space-6); grid-template-columns: 1fr; list-style: none; margin: 0; padding: 0; }
+  @media (min-width: 720px) { .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1040px) { .cases { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .case { display: grid; align-content: start; gap: var(--space-3); padding: var(--space-6); background: var(--paper-raised); border: 1px solid var(--line); border-radius: var(--radius-md); }
+  .case .tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .case ul { margin: 0; padding-left: 1.2em; }
+  .case li + li { margin-top: var(--space-1); }
+
+  .compare { display: grid; gap: var(--space-8); grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .compare { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .compare h3 { margin-bottom: var(--space-4); }
+  .compare dl { margin: 0; display: grid; gap: var(--space-4); }
+  .compare dt { font-weight: 500; }
+  .compare dd { margin: var(--space-1) 0 0; color: var(--ink-muted); }
+
+  .precedents { margin: 0; padding: 0; list-style: none; max-width: 820px; }
+  .precedents li { display: grid; grid-template-columns: 1fr; gap: var(--space-1); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+  .precedents li:first-child { border-top: 1px solid var(--line); }
+  @media (min-width: 720px) { .precedents li { grid-template-columns: 96px 1fr; gap: var(--space-6); } }
+  .precedents .when { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+  .precedents strong { font-weight: 500; }
+
+  main .notice-wrap { padding-block: 0 var(--space-16); }
+  .ts-risk { max-width: 820px; }
+
+  footer { border-top: 1px solid var(--line); }
+  footer .wrap { padding-block: var(--space-6); color: var(--ink-muted); }
+  footer p { margin: 0; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="TokenSec home">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <rect class="tile" x="0" y="0" width="28" height="28" rx="3"/><rect class="tile" x="36" y="0" width="28" height="28" rx="3"/><rect class="tile-held" x="72" y="0" width="28" height="28" rx="3"/>
+        <rect class="tile" x="0" y="36" width="28" height="28" rx="3"/><rect class="tile" x="36" y="36" width="28" height="28" rx="3"/><rect class="tile" x="72" y="36" width="28" height="28" rx="3"/>
+        <rect class="tile" x="0" y="72" width="28" height="28" rx="3"/><rect class="tile" x="36" y="72" width="28" height="28" rx="3"/><rect class="tile" x="72" y="72" width="28" height="28" rx="3"/>
+      </svg>
+      <span class="wordmark">Token<span>Sec</span></span>
+    </a>
+    <nav aria-label="Main"><a class="ts-body" href="/uses.html" aria-current="page">Uses</a><a class="ts-body" href="/contact.html">Contact</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap intro">
+    <p class="eyebrow ts-label">Uses</p>
+    <h1 class="ts-display">How securities and real-world assets are tokenised today</h1>
+    <p class="lede ts-body">Tokenisation records ownership of a security or asset on a blockchain-based register. A holder&rsquo;s rights still come from the instrument&rsquo;s terms and the law. What the register changes is how quickly those rights are issued, transferred and serviced.</p>
+  </div>
+
+  <section aria-labelledby="h-cases">
+    <div class="wrap">
+      <h2 class="ts-title" id="h-cases">Where it is being used</h2>
+      <p class="section-lede ts-body">Issuers, fund managers and governments are using digital securities across these instrument types.</p>
+      <ul class="cases">
+        <li class="case">
+          <div class="tags"><span class="ts-tag ts-tag-equity">Equity</span></div>
+          <h3 class="ts-subheading">Private company shares</h3>
+          <p class="ts-body">Ordinary and preference shares in unlisted companies, recorded on a register that updates when a transfer settles.</p>
+          <ul class="ts-small"><li>Raise capital from more investors in smaller parcels</li><li>Keep the share register and cap table current without manual reconciliation</li><li>Give shareholders a way to sell, subject to the company&rsquo;s transfer rules</li></ul>
+        </li>
+        <li class="case">
+          <div class="tags"><span class="ts-tag ts-tag-debt">Debt</span></div>
+          <h3 class="ts-subheading">Corporate bonds and notes</h3>
+          <p class="ts-body">Fixed and floating rate notes issued in smaller denominations, with interest and principal paid according to the terms.</p>
+          <ul class="ts-small"><li>Issue in days rather than weeks</li><li>Pay coupons to the holders recorded on the register at each record date</li><li>Lower the minimum holding for eligible investors</li></ul>
+        </li>
+        <li class="case">
+          <div class="tags"><span class="ts-tag">Fund units</span></div>
+          <h3 class="ts-subheading">Managed funds and unit trusts</h3>
+          <p class="ts-body">Units in cash, bond and private markets funds, held and transferred like any other registered interest.</p>
+          <ul class="ts-small"><li>Process applications and redemptions faster</li><li>Use fund units as collateral where the terms allow</li><li>Give fund administrators a single, current unit register</li></ul>
+        </li>
+        <li class="case">
+          <div class="tags"><span class="ts-tag">Property</span></div>
+          <h3 class="ts-subheading">Property</h3>
+          <p class="ts-body">Units in a trust, or shares in a company, that owns a building, so investors can hold a share of commercial, industrial or residential property.</p>
+          <ul class="ts-small"><li>Hold property exposure from a smaller amount</li><li>Pay rental income distributions to holders on the register</li><li>Transfer units between eligible investors without restructuring the syndicate</li></ul>
+        </li>
+        <li class="case">
+          <div class="tags"><span class="ts-tag ts-tag-debt">Debt</span></div>
+          <h3 class="ts-subheading">Private credit and trade finance</h3>
+          <p class="ts-body">Notes backed by loans, invoices or trade receivables, where investors fund a pool and are repaid as borrowers pay.</p>
+          <ul class="ts-small"><li>Fund working capital for businesses</li><li>Report on the underlying pool to holders in more detail and more often</li><li>Settle funding and repayments faster</li></ul>
+        </li>
+        <li class="case">
+          <div class="tags"><span class="ts-tag">Projects</span></div>
+          <h3 class="ts-subheading">Infrastructure and energy</h3>
+          <p class="ts-body">Equity or debt in renewable energy, storage and other infrastructure projects that pay income over long periods.</p>
+          <ul class="ts-small"><li>Raise project capital from a wider group of investors</li><li>Pay income from project revenue to the register</li><li>Track the use of proceeds for green and sustainability-linked bonds</li></ul>
+        </li>
+        <li class="case">
+          <div class="tags"><span class="ts-tag">Certificates</span></div>
+          <h3 class="ts-subheading">Environmental certificates</h3>
+          <p class="ts-body">Carbon credits and renewable energy certificates linked to a registry entry, so ownership and retirement can be tracked.</p>
+          <ul class="ts-small"><li>Show where a certificate came from and who has held it</li><li>Record retirement so a certificate can&rsquo;t be used twice</li><li>Package certificates into instruments that investors can hold</li></ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-changes">
+    <div class="wrap">
+      <h2 class="ts-title" id="h-changes">What changes, and what doesn&rsquo;t</h2>
+      <div class="compare">
+        <div>
+          <h3 class="ts-heading">What changes</h3>
+          <dl class="ts-body">
+            <div><dt>Settlement</dt><dd>Transfers can settle in minutes, with payment and ownership changing at the same time.</dd></div>
+            <div><dt>A live register</dt><dd>The issuer, its registry and each holder see the same current record.</dd></div>
+            <div><dt>Smaller units</dt><dd>Securities can be issued and held in smaller parcels where the terms allow.</dd></div>
+            <div><dt>Automated servicing</dt><dd>Dividends, coupons and distributions can be paid to the holders recorded on the register at the record date.</dd></div>
+            <div><dt>Built-in eligibility</dt><dd>Transfer rules can check that a buyer is verified and eligible before a transfer is recorded.</dd></div>
+          </dl>
+        </div>
+        <div>
+          <h3 class="ts-heading">What doesn&rsquo;t change</h3>
+          <dl class="ts-body">
+            <div><dt>The legal instrument</dt><dd>A tokenised share is still a share, and a tokenised note is still a note. Its terms set out the holder&rsquo;s rights.</dd></div>
+            <div><dt>Regulation</dt><dd>Offers still need the right licence, disclosure documents and investor eligibility checks.</dd></div>
+            <div><dt>Investment risk</dt><dd>The issuer&rsquo;s business, the asset&rsquo;s value and its liquidity carry the same risks as before.</dd></div>
+            <div><dt>Investor identity</dt><dd>Holders are verified, and the register records who they are.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-precedents">
+    <div class="wrap">
+      <h2 class="ts-title" id="h-precedents">Precedents</h2>
+      <p class="section-lede ts-body">Central banks, regulators and large issuers have already issued or tested digital securities.</p>
+      <ul class="precedents ts-body">
+        <li><span class="when">2024&ndash;25</span><span><strong>Project Acacia, Australia.</strong> The Reserve Bank of Australia and the Digital Finance Cooperative Research Centre tested how wholesale tokenised assets could be settled. ASIC relief allowed some pilots to use real money.</span></li>
+        <li><span class="when">2022&ndash;</span><span><strong>Project Guardian, Singapore.</strong> The Monetary Authority of Singapore and financial institutions have tested tokenised bonds, funds and foreign exchange.</span></li>
+        <li><span class="when">2023&ndash;24</span><span><strong>Hong Kong Government green bonds.</strong> The Hong Kong Government issued tokenised green bonds to institutional investors.</span></li>
+        <li><span class="when">2021&ndash;</span><span><strong>European Investment Bank digital bonds.</strong> The EIB has issued bonds recorded on blockchain registers.</span></li>
+        <li><span class="when">2021&ndash;</span><span><strong>Tokenised money market funds.</strong> Global fund managers, including Franklin Templeton and BlackRock, offer fund units recorded on public blockchains.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="wrap notice-wrap">
+    <aside class="ts-risk" aria-labelledby="gi-title">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 10v4.5"/><path d="M12 17.5h.01"/></svg>
+      <div>
+        <p class="ts-risk-title" id="gi-title">General information only</p>
+        <p>This page describes how tokenisation is used in the market. It is not an offer of any security and does not take into account your objectives, financial situation or needs. TokenSec does not yet offer any of the products described.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="ts-small">TokenSec is a CoinPort business.</p>
+  </div>
+</footer>
+</body>
+</html>
