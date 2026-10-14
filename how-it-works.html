@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it works | TokenSec</title>
+<meta name="description" content="How a blockchain-based register is used to issue, transfer and service shares, bonds and other securities, and what it changes for issuers and investors.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="branding/tokens.css">
+<link rel="stylesheet" href="branding/components/bundle.css">
+<style>
+  body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; background: var(--paper); color: var(--ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  .wrap { width: 100%; max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding-inline: var(--space-4); }
+  @media (min-width: 720px) { .wrap { padding-inline: var(--space-8); } }
+
+  header { border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: var(--space-4); row-gap: var(--space-1); min-height: 72px; padding-block: var(--space-3); }
+  @media (max-width: 480px) { nav { margin-inline-start: calc(var(--space-2) * -1); } }
+  nav { display: flex; gap: var(--space-2); }
+  nav a { color: var(--ink); text-decoration: none; border-radius: var(--radius-sm); padding: var(--space-2); }
+  nav a:hover { color: var(--link); }
+  nav a[aria-current="page"] { color: var(--ledger); }
+  nav a:focus-visible { outline: 2px solid transparent; box-shadow: var(--focus-ring); }
+  .logo { display: inline-flex; align-items: center; gap: var(--space-3); color: var(--ink); text-decoration: none; border-radius: var(--radius-sm); }
+  .logo:focus-visible { outline: 2px solid transparent; box-shadow: var(--focus-ring); }
+  .logo svg { width: 32px; height: 32px; flex: none; }
+  .logo .tile { fill: var(--ledger); }
+  .logo .tile-held { fill: var(--seal-fill); }
+  .wordmark { font-size: 24px; line-height: 1; font-weight: 600; letter-spacing: -0.01em; }
+  .wordmark span { color: var(--ledger); }
+
+  main { flex: 1; display: flex; align-items: center; }
+  main .wrap { padding-block: var(--space-16); display: grid; gap: var(--space-6); }
+  .eyebrow { margin: 0; color: var(--ink-muted); }
+  h1 { margin: 0; max-width: 18ch; text-wrap: balance; }
+  .lede { margin: 0; max-width: 60ch; color: var(--ink); }
+  @media (max-width: 600px) { h1.ts-display { font-size: 34px; line-height: 42px; } }
+
+  main { display: block; }
+  main .wrap { padding-block: 0; display: block; }
+  section { padding-block: var(--space-12); border-top: 1px solid var(--line); }
+  @media (min-width: 720px) { section { padding-block: var(--space-16); } }
+  main .intro { padding-block: var(--space-16) var(--space-12); display: grid; gap: var(--space-6); }
+  h2 { margin: 0 0 var(--space-2); max-width: 32ch; }
+  h3 { margin: 0; }
+  p { margin: 0; }
+  .section-lede { max-width: 65ch; margin-bottom: var(--space-8); color: var(--ink-muted); }
+  .prose { display: grid; gap: var(--space-4); max-width: 65ch; }
+
+  .parts { display: grid; gap: var(--space-6); grid-template-columns: 1fr; margin: 0; }
+  @media (min-width: 720px) { .parts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .parts div { padding: var(--space-6); background: var(--paper-raised); border: 1px solid var(--line); border-radius: var(--radius-md); }
+  .parts dt { font-weight: 500; margin-bottom: var(--space-2); }
+  .parts dd { margin: 0; }
+
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: step; max-width: 820px; }
+  .steps li { counter-increment: step; display: grid; grid-template-columns: 40px 1fr; gap: var(--space-4); padding-block: var(--space-6); border-bottom: 1px solid var(--line); }
+  .steps li:first-child { border-top: 1px solid var(--line); }
+  .steps li::before { content: counter(step); display: grid; place-items: center; width: 32px; height: 32px; border-radius: var(--radius-sm); background: var(--ledger-soft); color: var(--ledger); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .steps h3 { margin-bottom: var(--space-1); }
+
+  .benefits { display: grid; gap: var(--space-8); grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .benefits { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .benefits h3 { margin-bottom: var(--space-4); }
+  .benefits ul { margin: 0; padding-left: 1.2em; display: grid; gap: var(--space-3); }
+
+  .limits { margin: 0; display: grid; gap: var(--space-4); max-width: 820px; }
+  .limits dt { font-weight: 500; }
+  .limits dd { margin: var(--space-1) 0 0; color: var(--ink-muted); }
+
+  main .notice-wrap { padding-block: 0 var(--space-16); }
+  .ts-risk { max-width: 820px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="TokenSec home">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <rect class="tile" x="0" y="0" width="28" height="28" rx="3"/><rect class="tile" x="36" y="0" width="28" height="28" rx="3"/><rect class="tile-held" x="72" y="0" width="28" height="28" rx="3"/>
+        <rect class="tile" x="0" y="36" width="28" height="28" rx="3"/><rect class="tile" x="36" y="36" width="28" height="28" rx="3"/><rect class="tile" x="72" y="36" width="28" height="28" rx="3"/>
+        <rect class="tile" x="0" y="72" width="28" height="28" rx="3"/><rect class="tile" x="36" y="72" width="28" height="28" rx="3"/><rect class="tile" x="72" y="72" width="28" height="28" rx="3"/>
+      </svg>
+      <span class="wordmark">Token<span>Sec</span></span>
+    </a>
+    <nav aria-label="Main"><a class="ts-body" href="/how-it-works.html" aria-current="page">How it works</a><a class="ts-body" href="/uses.html">Uses</a><a class="ts-body" href="/contact.html">Contact</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap intro">
+    <p class="eyebrow ts-label">How it works</p>
+    <h1 class="ts-display">How a blockchain register holds a security</h1>
+    <p class="lede ts-body">A tokenised security is an ordinary share, note or unit whose ownership is recorded on a blockchain instead of in a spreadsheet or a registry database. The security is the same. The record of who owns it, and the way it moves, is what changes.</p>
+  </div>
+
+  <section aria-labelledby="h-parts">
+    <div class="wrap">
+      <h2 class="ts-title" id="h-parts">The parts</h2>
+      <p class="section-lede ts-body">Four things work together. Only one of them is new.</p>
+      <dl class="parts ts-body">
+        <div><dt>The legal instrument</dt><dd>The company constitution, note terms or trust deed that creates the security and sets out the holder&rsquo;s rights. This is unchanged by tokenisation.</dd></div>
+        <div><dt>The register</dt><dd>A program on the blockchain, often called a smart contract, that records how many units each holder owns. The issuer adopts it as its official register, or keeps it in step with one.</dd></div>
+        <div><dt>Verified holders</dt><dd>Each investor is identified and checked before they can hold units. The register only accepts transfers to verified, eligible holders.</dd></div>
+        <div><dt>Payment</dt><dd>Australian dollars, or a digital form of them, move between buyer and seller as the units change hands.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-life">
+    <div class="wrap">
+      <h2 class="ts-title" id="h-life">The life of a tokenised security</h2>
+      <p class="section-lede ts-body">From issue to redemption, each step is recorded on the same register.</p>
+      <ol class="steps ts-body">
+        <li><div><h3 class="ts-subheading">Structure</h3><p>The issuer and its lawyers set the terms of the security, the offer documents and who may invest. The terms state that the blockchain record is the register.</p></div></li>
+        <li><div><h3 class="ts-subheading">Verify investors</h3><p>Investors complete identity checks and confirm their eligibility, for example as wholesale investors. Their verified status is linked to their account on the register.</p></div></li>
+        <li><div><h3 class="ts-subheading">Issue</h3><p>When the offer closes and funds clear, the register creates the units and records them against each investor. Each holder can see their holding immediately.</p></div></li>
+        <li><div><h3 class="ts-subheading">Transfer</h3><p>When a holder sells, the register checks the buyer is eligible and that any transfer restrictions are met. Units and payment then change hands in the same step, so neither side waits on the other.</p></div></li>
+        <li><div><h3 class="ts-subheading">Service</h3><p>Dividends, coupons and distributions are calculated from the register at the record date and paid to each holder. Notices and votes can reach holders through the same record.</p></div></li>
+        <li><div><h3 class="ts-subheading">Redeem or retire</h3><p>When notes mature or units are bought back, holders are paid and the units are removed from the register. The full history stays on record.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-benefits">
+    <div class="wrap">
+      <h2 class="ts-title" id="h-benefits">The benefits</h2>
+      <p class="section-lede ts-body">Most of the benefit comes from everyone working from one shared, current record.</p>
+      <div class="benefits ts-body">
+        <div>
+          <h3 class="ts-heading">For issuers</h3>
+          <ul>
+            <li>Issue securities in days, with lower registry and settlement costs.</li>
+            <li>Keep the register and cap table current, without reconciling separate records.</li>
+            <li>Reach more eligible investors by offering smaller parcels.</li>
+            <li>Pay dividends, coupons and distributions straight from the register.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="ts-heading">For investors</h3>
+          <ul>
+            <li>Hold private shares and bonds from a smaller minimum, where the terms allow.</li>
+            <li>See your holding on the register as soon as it is issued or transferred.</li>
+            <li>Sell to another eligible investor, with settlement in minutes rather than days.</li>
+            <li>Check your holding and payment history yourself, at any time.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="ts-heading">For advisers and partners</h3>
+          <ul>
+            <li>Audit a complete, time-stamped history of every issue, transfer and payment.</li>
+            <li>Rely on transfer rules that enforce eligibility and restrictions automatically.</li>
+            <li>Reduce the hand-offs between registries, custodians and payment providers.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-limits">
+    <div class="wrap">
+      <h2 class="ts-title" id="h-limits">What to keep in mind</h2>
+      <p class="section-lede ts-body">The register makes securities easier to issue and move. It does not remove the risks of owning them.</p>
+      <dl class="limits ts-body">
+        <div><dt>Liquidity is not guaranteed</dt><dd>A faster transfer only helps if there is a buyer. Private shares and bonds may still be hard to sell before maturity.</dd></div>
+        <div><dt>The issuer&rsquo;s risk is unchanged</dt><dd>If the business or asset performs poorly, a tokenised security loses value just as a paper one would.</dd></div>
+        <div><dt>Technology risk</dt><dd>Errors in the register program, or problems with the blockchain it runs on, could delay or disrupt transfers. Issuers should have the register code independently reviewed.</dd></div>
+        <div><dt>Access and recovery</dt><dd>Holders access their units through secure accounts. The terms should set out how a holding is restored if access is lost.</dd></div>
+        <div><dt>Law and regulation</dt><dd>The offer still needs the right licence, disclosure documents and investor checks. The terms must make clear how the blockchain record relates to the legal register.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="wrap notice-wrap">
+    <aside class="ts-risk" aria-labelledby="gi-title">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 10v4.5"/><path d="M12 17.5h.01"/></svg>
+      <div>
+        <p class="ts-risk-title" id="gi-title">General information only</p>
+        <p>This page explains how tokenisation works in general terms. It is not an offer of any security and does not take into account your objectives, financial situation or needs. TokenSec does not yet offer any of the products described.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="ts-small">TokenSec is a CoinPort business.</p>
+  </div>
+</footer>
+</body>
+</html>

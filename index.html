@@ -13,7 +13,8 @@
   @media (min-width: 720px) { .wrap { padding-inline: var(--space-8); } }
 
   header { border-bottom: 1px solid var(--line); }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 72px; }
+  header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: var(--space-4); row-gap: var(--space-1); min-height: 72px; padding-block: var(--space-3); }
+  @media (max-width: 480px) { nav { margin-inline-start: calc(var(--space-2) * -1); } }
   nav { display: flex; gap: var(--space-2); }
   nav a { color: var(--ink); text-decoration: none; border-radius: var(--radius-sm); padding: var(--space-2); }
   nav a:hover { color: var(--link); }
@@ -50,7 +51,7 @@
       </svg>
       <span class="wordmark">Token<span>Sec</span></span>
     </a>
-    <nav aria-label="Main"><a class="ts-body" href="/uses.html">Uses</a><a class="ts-body" href="/contact.html">Contact</a></nav>
+    <nav aria-label="Main"><a class="ts-body" href="/how-it-works.html">How it works</a><a class="ts-body" href="/uses.html">Uses</a><a class="ts-body" href="/contact.html">Contact</a></nav>
   </div>
 </header>
 
