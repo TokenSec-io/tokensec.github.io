@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart contracts | TokenSec</title>
+<meta name="description" content="How smart contracts add transfer rules, escrow, voting and automated payments to a blockchain-based securities register.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="branding/tokens.css">
+<link rel="stylesheet" href="branding/components/bundle.css">
+<style>
+  body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; background: var(--paper); color: var(--ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  .wrap { width: 100%; max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding-inline: var(--space-4); }
+  @media (min-width: 720px) { .wrap { padding-inline: var(--space-8); } }
+
+  header { border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: var(--space-4); row-gap: var(--space-1); min-height: 72px; padding-block: var(--space-3); }
+  @media (max-width: 480px) { nav { margin-inline-start: calc(var(--space-2) * -1); } }
+  nav { display: flex; flex-wrap: wrap; gap: 0 var(--space-2); }
+  nav a { color: var(--ink); text-decoration: none; border-radius: var(--radius-sm); padding: var(--space-2); }
+  nav a:hover { color: var(--link); }
+  nav a[aria-current="page"] { color: var(--ledger); }
+  nav a:focus-visible { outline: 2px solid transparent; box-shadow: var(--focus-ring); }
+  .logo { display: inline-flex; align-items: center; gap: var(--space-3); color: var(--ink); text-decoration: none; border-radius: var(--radius-sm); }
+  .logo:focus-visible { outline: 2px solid transparent; box-shadow: var(--focus-ring); }
+  .logo svg { width: 32px; height: 32px; flex: none; }
+  .logo .tile { fill: var(--ledger); }
+  .logo .tile-held { fill: var(--seal-fill); }
+  .wordmark { font-size: 24px; line-height: 1; font-weight: 600; letter-spacing: -0.01em; }
+  .wordmark span { color: var(--ledger); }
+
+  main { flex: 1; display: flex; align-items: center; }
+  main .wrap { padding-block: var(--space-16); display: grid; gap: var(--space-6); }
+  .eyebrow { margin: 0; color: var(--ink-muted); }
+  h1 { margin: 0; max-width: 18ch; text-wrap: balance; }
+  .lede { margin: 0; max-width: 60ch; color: var(--ink); }
+  @media (max-width: 600px) { h1.ts-display { font-size: 34px; line-height: 42px; } }
+
+  main { display: block; }
+  main .wrap { padding-block: 0; display: block; }
+  section { padding-block: var(--space-12); border-top: 1px solid var(--line); }
+  @media (min-width: 720px) { section { padding-block: var(--space-16); } }
+  main .intro { padding-block: var(--space-16) var(--space-12); display: grid; gap: var(--space-6); }
+  h2 { margin: 0 0 var(--space-2); max-width: 32ch; }
+  h3 { margin: 0; }
+  p { margin: 0; }
+  .section-lede { max-width: 65ch; margin-bottom: var(--space-8); color: var(--ink-muted); }
+
+  .features { display: grid; gap: var(--space-6); grid-template-columns: 1fr; list-style: none; margin: 0; padding: 0; }
+  @media (min-width: 720px) { .features { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .feature { display: grid; align-content: start; gap: var(--space-3); padding: var(--space-6); background: var(--paper-raised); border: 1px solid var(--line); border-radius: var(--radius-md); }
+  .feature .ts-label { color: var(--ink-muted); }
+  .feature ul { margin: 0; padding-left: 1.2em; display: grid; gap: var(--space-2); }
+
+  .table-scroll { overflow-x: auto; max-width: 100%; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--paper-raised); }
+  table { width: 100%; min-width: 640px; border-collapse: collapse; }
+  th, td { text-align: left; vertical-align: top; padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--line); }
+  thead th { background: var(--paper-sunk); }
+  tbody tr:last-child td { border-bottom: 0; }
+  td:first-child { font-weight: 500; }
+
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: step; max-width: 820px; }
+  .steps li { counter-increment: step; display: grid; grid-template-columns: 40px 1fr; gap: var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+  .steps li:first-child { border-top: 1px solid var(--line); }
+  .steps li::before { content: counter(step); display: grid; place-items: center; width: 32px; height: 32px; border-radius: var(--radius-sm); background: var(--ledger-soft); color: var(--ledger); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .outcome { margin-top: var(--space-6); max-width: 820px; padding: var(--space-4) var(--space-6); background: var(--paper-sunk); border-radius: var(--radius-md); }
+
+  .limits { margin: 0; display: grid; gap: var(--space-4); max-width: 820px; }
+  .limits dt { font-weight: 500; }
+  .limits dd { margin: var(--space-1) 0 0; color: var(--ink-muted); }
+
+  main .notice-wrap { padding-block: 0 var(--space-16); }
+  .ts-risk { max-width: 820px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="TokenSec home">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <rect class="tile" x="0" y="0" width="28" height="28" rx="3"/><rect class="tile" x="36" y="0" width="28" height="28" rx="3"/><rect class="tile-held" x="72" y="0" width="28" height="28" rx="3"/>
+        <rect class="tile" x="0" y="36" width="28" height="28" rx="3"/><rect class="tile" x="36" y="36" width="28" height="28" rx="3"/><rect class="tile" x="72" y="36" width="28" height="28" rx="3"/>
+        <rect class="tile" x="0" y="72" width="28" height="28" rx="3"/><rect class="tile" x="36" y="72" width="28" height="28" rx="3"/><rect class="tile" x="72" y="72" width="28" height="28" rx="3"/>
+      </svg>
+      <span class="wordmark">Token<span>Sec</span></span>
+    </a>
+    <nav aria-label="Main"><a class="ts-body" href="/">Home</a><a class="ts-body" href="/how-it-works.html">How it works</a><a class="ts-body" href="/smart-contracts.html" aria-current="page">Smart contracts</a><a class="ts-body" href="/uses.html">Uses</a><a class="ts-body" href="/contact.html">Contact</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap intro">
+    <p class="eyebrow ts-label">Smart contracts</p>
+    <h1 class="ts-display">Rules that run with the register</h1>
+    <p class="lede ts-body">A smart contract is a program stored on the blockchain alongside the register. It holds the record of who owns each unit and applies the security&rsquo;s rules every time that record changes. This lets a register do more than record holdings: it can check transfers, hold funds in escrow, count votes and make payments.</p>
+  </div>
+
+  <section aria-labelledby="h-features">
+    <div class="wrap">
+      <h2 class="ts-title" id="h-features">What smart contracts add</h2>
+      <p class="section-lede ts-body">Each feature applies terms that already exist in the constitution, note terms or trust deed. The contract makes them automatic.</p>
+      <ul class="features">
+        <li class="feature">
+          <p class="ts-label">Transfers</p>
+          <h3 class="ts-heading">Transfer rules</h3>
+          <p class="ts-body">The contract checks every transfer against the security&rsquo;s terms before it records it. A transfer that breaks a rule is refused, rather than corrected after the event.</p>
+          <ul class="ts-body"><li>Only verified, eligible investors can receive units</li><li>Holding periods and lock-ups stop transfers until a set date</li><li>Limits on the number of holders, or on any one holder&rsquo;s share, are enforced</li><li>Pre-emptive rights can offer units to existing holders first</li><li>Holdings can be frozen or moved under a court order, a deceased estate or the terms</li></ul>
+        </li>
+        <li class="feature">
+          <p class="ts-label">Escrow</p>
+          <h3 class="ts-heading">Escrow and settlement</h3>
+          <p class="ts-body">The contract can hold money or units until agreed conditions are met, then release them automatically.</p>
+          <ul class="ts-body"><li>Application money is held until a minimum raise is reached, and refunded if it isn&rsquo;t</li><li>Units and payment are exchanged in one step, so neither side carries settlement risk</li><li>Founder and employee shares can vest on a schedule and stay locked until they do</li><li>Funds for a buy-back or redemption are held until the units are surrendered</li></ul>
+        </li>
+        <li class="feature">
+          <p class="ts-label">Voting</p>
+          <h3 class="ts-heading">Voting and resolutions</h3>
+          <p class="ts-body">Votes are counted from the register itself, so every holder&rsquo;s entitlement is exact and the tally can be checked.</p>
+          <ul class="ts-body"><li>Entitlements are fixed from the register at the record date</li><li>Different share classes vote according to the rights the constitution gives them</li><li>Holders can appoint a proxy or vote directly</li><li>Quorum and the result are calculated and recorded with the resolution</li></ul>
+        </li>
+        <li class="feature">
+          <p class="ts-label">Payments</p>
+          <h3 class="ts-heading">Payments and corporate actions</h3>
+          <p class="ts-body">Routine actions that depend on who holds what can run straight from the register.</p>
+          <ul class="ts-body"><li>Dividends, coupons and distributions are paid pro rata to holders at the record date</li><li>Notes are redeemed and removed from the register at maturity</li><li>Convertible notes convert into shares on the agreed terms</li><li>Share splits and consolidations update every holding at once</li></ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-sources">
+    <div class="wrap">
+      <h2 class="ts-title" id="h-sources">Where each rule comes from</h2>
+      <p class="section-lede ts-body">A contract should only enforce rules that a legal document or the law already sets. These are typical examples.</p>
+      <div class="table-scroll">
+        <table class="ts-small">
+          <thead><tr><th scope="col">Rule</th><th scope="col">What the contract checks</th><th scope="col">Where it comes from</th></tr></thead>
+          <tbody>
+            <tr><td>Investor eligibility</td><td>The buyer is verified and meets the offer&rsquo;s eligibility test</td><td>Offer documents and the law on who may invest</td></tr>
+            <tr><td>Lock-up</td><td>The current date is after the end of the holding period</td><td>Subscription agreement or escrow deed</td></tr>
+            <tr><td>Pre-emptive rights</td><td>Existing holders have been offered the units first</td><td>Company constitution or shareholders&rsquo; agreement</td></tr>
+            <tr><td>Minimum raise</td><td>Total applications reach the minimum before units are issued</td><td>Offer documents</td></tr>
+            <tr><td>Voting entitlement</td><td>Units held at the record date, and the class&rsquo;s voting rights</td><td>Company constitution and the law on meetings</td></tr>
+            <tr><td>Coupon payment</td><td>Holders and holdings at the record date, and the coupon rate</td><td>Note terms</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-example">
+    <div class="wrap">
+      <h2 class="ts-title" id="h-example">Example: a share transfer</h2>
+      <p class="section-lede ts-body">A shareholder in a private company agrees to sell 500 ordinary shares to another investor. When the transfer is submitted, the contract:</p>
+      <ol class="steps ts-body">
+        <li><p>Confirms the buyer is a verified investor who meets the company&rsquo;s eligibility test.</p></li>
+        <li><p>Checks the seller&rsquo;s shares are not still under a lock-up.</p></li>
+        <li><p>Confirms the company&rsquo;s other shareholders have waived or not taken up their pre-emptive rights.</p></li>
+        <li><p>Checks the company would not exceed its limit on the number of shareholders.</p></li>
+        <li><p>Takes the buyer&rsquo;s payment and moves the shares in the same step.</p></li>
+      </ol>
+      <p class="outcome ts-body">If every check passes, the register shows the buyer as the holder of 500 ordinary shares straight away. If any check fails, nothing moves and both parties see the reason.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-limits">
+    <div class="wrap">
+      <h2 class="ts-title" id="h-limits">Safeguards and limits</h2>
+      <p class="section-lede ts-body">A smart contract is only as good as its code and the legal terms behind it.</p>
+      <dl class="limits ts-body">
+        <div><dt>The legal terms come first</dt><dd>The documents should say that, if the code and the terms ever disagree, the terms prevail, and how the register is corrected.</dd></div>
+        <div><dt>Independent review</dt><dd>Contract code should be reviewed by independent specialists before it holds real securities or money, and again after any change.</dd></div>
+        <div><dt>Who can change the rules</dt><dd>Contracts usually allow updates, for example when the law changes. The terms should state who can make changes and how holders are told.</dd></div>
+        <div><dt>Correcting errors</dt><dd>Blockchain records are hard to reverse. The issuer or its registry needs defined powers to fix mistakes, restore lost access and act on court orders.</dd></div>
+        <div><dt>Outside information</dt><dd>Some rules depend on facts the blockchain can&rsquo;t see, such as an investor&rsquo;s eligibility or an interest rate. The contract relies on whoever supplies that information.</dd></div>
+        <div><dt>Privacy</dt><dd>Some blockchains make records visible to anyone. The register should be designed so personal details stay private.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="wrap notice-wrap">
+    <aside class="ts-risk" aria-labelledby="gi-title">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 10v4.5"/><path d="M12 17.5h.01"/></svg>
+      <div>
+        <p class="ts-risk-title" id="gi-title">General information only</p>
+        <p>This page explains how smart contracts can work in general terms. It is not an offer of any security and does not take into account your objectives, financial situation or needs. TokenSec does not yet offer any of the products described.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="ts-small">TokenSec is a CoinPort business.</p>
+  </div>
+</footer>
+</body>
+</html>
